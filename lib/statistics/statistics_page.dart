@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+//ЭКРАН СТАТИСТИКИ
 class StatisticsPage extends StatelessWidget {
   final String projectId;
   final String projectTitle;
@@ -12,6 +13,10 @@ class StatisticsPage extends StatelessWidget {
   });
 
   String getDisplayStatus(Map<String, dynamic> data) {
+    //считываем с базы задачи
+    //выделяем статусы 
+    //и считываем кол-во и процентное соотношение задач по статусу: выполнен, просрочен, в процессе,
+    //еще не приступили
     final status = data["status"] ?? "todo";
 
     if (status == "done") {
@@ -68,6 +73,7 @@ class StatisticsPage extends StatelessWidget {
     );
   }
 
+//верста интерфейса
   @override
   Widget build(BuildContext context) {
     return Scaffold(
