@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "162629854638",
+    "project_id": "teamflow-af732",
+    "storage_bucket": "teamflow-af732.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162629854638:android:c9e80a653eea0d239b543f",
+        "android_client_info": {
+          "package_name": "com.example.teamflow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4-2hUqMnufVA5DjIk8fMRBE7ixjfYFPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
