@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:teamflow/home/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+//ЭКРАН ПРОФИЛЯ
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -12,8 +13,11 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  //переменные где храним старые данные текущего пользователя
   String oldName = "";
   String oldPosition = "";
+
+  //переменные для отслеживания текстов в полях ввода
   final nameController = TextEditingController();
   final positionController = TextEditingController();
 
@@ -23,6 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    //подгружаем существующие данные если есть
     loadProfile();
   }
 
@@ -33,6 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
     super.dispose();
   }
 
+//сохраняем данные профиля
   Future<void> saveProfile() async {
   final name = nameController.text.trim();
   final position = positionController.text.trim();
@@ -93,6 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
+//функция считывания данных профиля с базы
 Future<void> loadProfile() async {
   final user = FirebaseAuth.instance.currentUser;
 
@@ -119,6 +126,7 @@ Future<void> loadProfile() async {
   });
 }
 
+//верста интерфейса
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -236,6 +244,7 @@ Future<void> loadProfile() async {
     );
   }
 
+//выход с аккаунта, лог аут
   Future<void> logout() async {
   await FirebaseAuth.instance.signOut();
 

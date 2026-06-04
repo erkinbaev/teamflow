@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:teamflow/project/project_page.dart';
 
+//ГЛАВНЫЙ ЭКРАН С ПРОЕКТАМИ
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -15,8 +16,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //параметр для отслеживания текста названия проекта при добавлении
   final projectNameController = TextEditingController();
 
+//цвета для покраски ячеек
   final List<int> projectColors = [
     0xFFEF5350,
     0xFFAB47BC,
@@ -34,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+//верста интерфейса
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
@@ -140,6 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+//переход на экран профиля
   void navigateToProfile() {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -148,6 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+//открытие модального окна для создание проекта
   void showCreateProjectModal() {
     showModalBottomSheet(
       context: context,
@@ -233,6 +239,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+//логика добавления проекта в базу
   Future<void> createProject() async {
     final title = projectNameController.text.trim();
 

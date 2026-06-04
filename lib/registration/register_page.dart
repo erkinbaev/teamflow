@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:teamflow/profile/profile_page.dart';
 
 
-
+//ЭКРАН РЕГИСТРАЦИИ
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -12,6 +12,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  //поля для отслеживания текстов в полях ввода email,
+  //password и повтор password
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final repeatPasswordController = TextEditingController();
@@ -28,6 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
+//функция регистрации пользователя в базу
   Future<void> registerUser() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
@@ -90,10 +93,12 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+//возврат на авторизацию
   void goToLogin() {
     Navigator.pop(context);
   }
 
+//верста интерфейса
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,3 +1,4 @@
+//сущность описания проекта со следующими свойствами
 class ProjectModel {
   final String id;
   final String title;

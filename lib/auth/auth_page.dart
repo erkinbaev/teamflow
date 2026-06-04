@@ -4,6 +4,7 @@ import 'package:teamflow/profile/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:teamflow/registration/register_page.dart';
 
+//ЭКРАН АВТОРИЗАЦИИ
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
 
@@ -12,6 +13,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<AuthPage> {
+  //2 переменные для отслеживания текста поля для почты и пароля
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -25,6 +27,8 @@ class _LoginPageState extends State<AuthPage> {
     super.dispose();
   }
 
+  //функция, которая берет текст из текстовых полей и делает проверку на
+  //пустоту, проверку в базе и дальнейший переход на главный экран
   Future<void> login() async {
   final email = emailController.text.trim();
   final password = passwordController.text.trim();
@@ -86,6 +90,7 @@ class _LoginPageState extends State<AuthPage> {
   }
 }
 
+//переход на экран регистрации
   void register() {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) => RegisterPage()));
   }
@@ -94,6 +99,7 @@ class _LoginPageState extends State<AuthPage> {
     // восстановление пароля
   }
 
+  //верстка интерфейса
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -267,10 +273,5 @@ class _LoginPageState extends State<AuthPage> {
         ),
       ),
     );
-  }
-
-  void firebaseAuth() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) =>  ProfilePage()));
   }
 }

@@ -4,6 +4,7 @@ import 'package:teamflow/statistics/statistics_page.dart';
 import 'package:teamflow/task/task_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+//ЭКРАН СО СПИСКОМ ЗАДАЧ
 class ProjectPage extends StatefulWidget {
   final String projectId;
   final String projectTitle;
@@ -19,9 +20,11 @@ class ProjectPage extends StatefulWidget {
 }
 
 class _ProjectPageState extends State<ProjectPage> {
+  //переменные для отслеживания названия задачи, описания
   final taskTitleController = TextEditingController();
   final taskDescriptionController = TextEditingController();
 
+//дедлайн, ответственный за задачу его id, и остальные участники
   DateTime? selectedDeadline;
   String? selectedUserId;
   String? selectedMemberId;
@@ -33,6 +36,7 @@ class _ProjectPageState extends State<ProjectPage> {
     super.dispose();
   }
 
+//установка цвета в зависимости от статуса
   Color getTaskColor(String status) {
     switch (status) {
       case "inProgress":
@@ -47,6 +51,7 @@ class _ProjectPageState extends State<ProjectPage> {
     }
   }
 
+//установка цвета текста статуса
   Color getTaskTextColor(String status) {
     return status == "todo" ? Colors.black : Colors.white;
   }
@@ -65,6 +70,7 @@ class _ProjectPageState extends State<ProjectPage> {
     return status;
   }
 
+//установка текста статуса
   String getStatusText(String status) {
     switch (status) {
       case "inProgress":
@@ -79,6 +85,7 @@ class _ProjectPageState extends State<ProjectPage> {
     }
   }
 
+//форматирование даты в формат день/месяц/год
   String formatDate(Timestamp? timestamp) {
     if (timestamp == null) return "Без дедлайна";
 
@@ -86,6 +93,7 @@ class _ProjectPageState extends State<ProjectPage> {
     return "${date.day}.${date.month}.${date.year}";
   }
 
+//верста интерфейса
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -260,6 +268,7 @@ class _ProjectPageState extends State<ProjectPage> {
     );
   }
 
+//функция для создания задачи и запись в базу
   Future<void> createTask() async {
     final title = taskTitleController.text.trim();
     final description = taskDescriptionController.text.trim();
@@ -298,6 +307,7 @@ class _ProjectPageState extends State<ProjectPage> {
     Navigator.pop(context);
   }
 
+//модальное окно создания задачи
   void showCreateTaskModal() {
     showModalBottomSheet(
       context: context,
@@ -442,6 +452,7 @@ class _ProjectPageState extends State<ProjectPage> {
     );
   }
 
+//показ списка участников проекта
   Widget buildResponsibleDropdown(StateSetter setModalState) {
     return StreamBuilder<DocumentSnapshot>(
       stream: FirebaseFirestore.instance
@@ -524,6 +535,7 @@ class _ProjectPageState extends State<ProjectPage> {
     );
   }
 
+//добавление участников проекта
   void showMembersModal() {
     showModalBottomSheet(
       context: context,
@@ -722,6 +734,7 @@ class _ProjectPageState extends State<ProjectPage> {
     );
   }
 
+//переход на экран статистики
   void navigateToStatistics(BuildContext context) {
     Navigator.push(
       context,
